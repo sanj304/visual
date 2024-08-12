@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.mobileapp.R
+import com.example.mobileapp.data.AuthViewModel
 import com.example.mobileapp.navigation.ROUTE_HOME
 import com.example.mobileapp.navigation.ROUTE_LOGIN
 
@@ -122,16 +123,7 @@ fun Greeting(name: String, navController: NavController) {
             onValueChange = { newName ->
                 email = newName
             })
-        Spacer(modifier = Modifier.height(10.dp))
-        OutlinedTextField(modifier = Modifier
-            .wrapContentWidth()
-            .align(Alignment.CenterHorizontally),
-            label = { Text(text = "Enter phone number") },
-            placeholder = { Text(text = "Please enter phone number") },
-            value = phonenumber,
-            onValueChange = { newName ->
-                phonenumber = newName
-            })
+
         Spacer(modifier = Modifier.height(10.dp))
         OutlinedTextField(modifier = Modifier
             .wrapContentWidth()
@@ -145,6 +137,8 @@ fun Greeting(name: String, navController: NavController) {
         Spacer(modifier = Modifier.height(20.dp))
         Button(
             onClick = {
+                val register = AuthViewModel(navController, context)
+                register.signup(firstName.trim(),secondName.trim(),email.trim(), password.trim())
                 navController.navigate(ROUTE_HOME)
             },
             colors = ButtonDefaults.buttonColors(Color.Cyan),

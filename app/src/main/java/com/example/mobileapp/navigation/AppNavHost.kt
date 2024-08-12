@@ -16,7 +16,7 @@ import com.example.mobileapp.ui.theme.screens.register.Greeting
 
 @Composable
 fun AppNavHost(navController:NavHostController= rememberNavController(),
-               startDestination:String = ROUTE_ADD_CLIENT){
+               startDestination:String = ROUTE_REGISTER){
 
     NavHost(navController=navController,
         startDestination=startDestination){
